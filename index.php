@@ -3,7 +3,7 @@
 //  1) Retrieve table to for each loop just to echo first
 
 require_once 'paint-collector-app.php';
-
+returnDb()
 
 ?>
 <!DOCTYPE html>
@@ -25,16 +25,7 @@ require_once 'paint-collector-app.php';
             <th>Purchase Date</th>
         </tr>
         <?php
-        foreach ($table as $key => $value) {
-            echo '<tr>';
-            echo "<td>{$value['brand']}</td>";
-            echo "<td>{$value['name']}</td>";
-            echo "<td>{$value['color']}</td>";
-            echo "<td>{$value['base']}</td>";
-            echo "<td>{$value['quantity_left']}</td>";
-            echo "<td>{$value['purchase_date']}</td>";
-            echo '</tr>';
-        }
+        populateTable($table);
         ?>
     </table>
     </body>
