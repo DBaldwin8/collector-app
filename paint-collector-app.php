@@ -13,10 +13,7 @@ $query = $db->prepare ('SELECT * FROM `paints`');
 $result = $query->execute();
 
 if (!isset($result)) {
-    return 'You broke it';
+    echo 'You broke it';
 } else {
     $table = $query->fetchAll();
-    echo '<pre>';
-    var_dump($table);
-    echo '</pre>';
 }
