@@ -11,22 +11,6 @@ function returnDb()
     return $db;
 }
 
-$query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
-
-$result = $query->execute();
-
-if (!$result) {
-    echo 'error with result';
-} else {
-    $table = $query->fetchAll();
-    /*
-    echo '<pre>';
-    var_dump($table);
-    echo '</pre>';
-    */
-}
-?>
-<?php
 function populateTable (array $table) {
     foreach ($table as $key => $value) {
         echo '<tr>';

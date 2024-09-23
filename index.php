@@ -3,7 +3,17 @@
 //  1) Retrieve table to for each loop just to echo first
 
 require_once 'paint-collector-app.php';
-returnDb()
+$db = returnDb();
+
+$query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
+
+$result = $query->execute();
+
+if (!$result) {
+    echo 'error with result';
+} else {
+    $table = $query->fetchAll();
+}
 
 ?>
 <!DOCTYPE html>
