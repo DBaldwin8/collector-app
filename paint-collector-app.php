@@ -12,15 +12,17 @@ function returnDb()
 }
 
 function populateTable (array $table) {
+    $row = '';
     foreach ($table as $key => $value) {
-        echo '<tr>';
-        echo "<td>{$value['brand']}</td>";
-        echo "<td>{$value['name']}</td>";
-        echo "<td>{$value['color']}</td>";
-        echo "<td>{$value['base']}</td>";
-        echo "<td>{$value['quantity_left']}</td>";
-        echo "<td>{$value['purchase_date']}</td>";
-        echo '</tr>';
+        $row .= "<tr>".
+        "<td>{$value['brand']}</td>".
+        "<td>{$value['name']}</td>".
+        "<td>{$value['color']}</td>".
+        "<td>{$value['base']}</td>".
+        "<td>{$value['quantity_left']}</td>".
+        "<td>{$value['purchase_date']}</td>".
+        "</tr>";
     }
+    return $row;
 }
 ?>

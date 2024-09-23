@@ -35,7 +35,7 @@ if (!$result) {
             <th>Purchase Date</th>
         </tr>
         <?php
-        populateTable($table);
+        echo populateTable($table);
         ?>
     </table>
     </body>
