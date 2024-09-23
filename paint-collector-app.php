@@ -13,7 +13,7 @@ $query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`
 $result = $query->execute();
 
 if (!$result) {
-    echo 'You broke it';
+    echo 'error with result';
 } else {
     $table = $query->fetchAll();
     /*
@@ -35,12 +35,12 @@ if (!$result) {
 <?php
 foreach ($table as $key => $value) {
     echo '<tr>';
-    echo "<td>{$value['brand']}<td>";
-    echo "<td>{$value['name']}<td>";
-    echo "<td>{$value['color']}<td>";
-    echo "<td>{$value['base']}<td>";
-    echo "<td>{$value['quantity_left']}<td>";
-    echo "<td>{$value['purchase_date']}<td>";
+    echo "<td>{$value['brand']}</td>";
+    echo "<td>{$value['name']}</td>";
+    echo "<td>{$value['color']}</td>";
+    echo "<td>{$value['base']}</td>";
+    echo "<td>{$value['quantity_left']}</td>";
+    echo "<td>{$value['purchase_date']}</td>";
     echo '</tr>';
 }
 ?>

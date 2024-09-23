@@ -1,7 +1,6 @@
 <?php
 // TASK 2
 //  1) Retrieve table to for each loop just to echo first
-//  2) store outcome into variable?
 
 require_once 'paint-collector-app.php';
 
