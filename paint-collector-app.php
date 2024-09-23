@@ -12,7 +12,7 @@ $query = $db->prepare ('SELECT * FROM `paints`');
 
 $result = $query->execute();
 
-if (!isset($result)) {
+if (!$result) {
     echo 'You broke it';
 } else {
     $table = $query->fetchAll();
