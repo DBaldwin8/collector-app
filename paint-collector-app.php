@@ -23,25 +23,3 @@ if (!$result) {
     */
 }
 ?>
-<table>
-    <tr>
-        <th>Brand</th>
-        <th>Name</th>
-        <th>Color</th>
-        <th>Base</th>
-        <th>Quantity Remaining</th>
-        <th>Purchase Date</th>
-    </tr>
-<?php
-foreach ($table as $key => $value) {
-    echo '<tr>';
-    echo "<td>{$value['brand']}</td>";
-    echo "<td>{$value['name']}</td>";
-    echo "<td>{$value['color']}</td>";
-    echo "<td>{$value['base']}</td>";
-    echo "<td>{$value['quantity_left']}</td>";
-    echo "<td>{$value['purchase_date']}</td>";
-    echo '</tr>';
-}
-?>
-</table>
