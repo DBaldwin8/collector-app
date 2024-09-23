@@ -16,4 +16,8 @@ if (!isset($result)) {
     echo 'You broke it';
 } else {
     $table = $query->fetchAll();
+    echo '<pre>';
+    var_dump($table);
+    echo '</pre>';
 }
+
