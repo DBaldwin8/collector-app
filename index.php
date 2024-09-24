@@ -3,9 +3,11 @@
 require_once 'paint-collector-app.php';
 $db = returnDb();
 
-$query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
-$result = $query->execute();
-$table = $query->fetchAll();
+function retrieveAllQuery($db) {
+    $query = $db->prepare('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
+    $result = $query->execute();
+    return $query->fetchAll();
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ $table = $query->fetchAll();
                     <th class="heading">Purchase Date</th>
                 </tr>
                 <?php
-                    echo populateTable($table);
+                    echo populateTable(retrieveAllQuery($db));
                 ?>
             </table>
         </div>
