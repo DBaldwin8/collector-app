@@ -1,7 +1,13 @@
 <?php
+// TASK 2
+//  1) Retrieve table to for each loop just to echo first
 
 require_once 'paint-collector-app.php';
+$db = returnDb();
 
+$query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
+$result = $query->execute();
+$table = $query->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -13,12 +19,18 @@ require_once 'paint-collector-app.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-
-        <?php
-        echo '<pre>';
-            var_dump($table);
-        echo '</pre>'
-        ?>
-
+        <table>
+            <tr>
+                <th>Brand</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Base</th>
+                <th>Quantity Remaining</th>
+                <th>Purchase Date</th>
+            </tr>
+            <?php
+                echo populateTable($table);
+            ?>
+        </table>
     </body>
 </html>
