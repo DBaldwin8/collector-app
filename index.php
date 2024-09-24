@@ -1,6 +1,6 @@
 <?php
-// TASK 2
-//  1) Retrieve table to for each loop just to echo first
+// TASK 3
+//  1) style.
 
 require_once 'paint-collector-app.php';
 $db = returnDb();
