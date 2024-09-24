@@ -19,18 +19,21 @@ $table = $query->fetchAll();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <table>
-            <tr>
-                <th>Brand</th>
-                <th>Name</th>
-                <th>Color</th>
-                <th>Base</th>
-                <th>Quantity Remaining</th>
-                <th>Purchase Date</th>
-            </tr>
-            <?php
-                echo populateTable($table);
-            ?>
-        </table>
+        <div class="container">
+            <h1>Paint Leftover</h1>
+            <table class="table">
+                <tr>
+                    <th class="heading">Brand</th>
+                    <th class="heading">Name</th>
+                    <th class="heading">Color</th>
+                    <th class="heading">Base</th>
+                    <th class="heading">Quantity Remaining (L)</th>
+                    <th class="heading">Purchase Date</th>
+                </tr>
+                <?php
+                    echo populateTable($table);
+                ?>
+            </table>
+        </div>
     </body>
 </html>
