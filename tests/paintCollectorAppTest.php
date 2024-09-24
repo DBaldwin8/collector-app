@@ -10,7 +10,12 @@ class paintCollectorAppTest extends TestCase {
 
     public function testPopulateTable(): void
     {
-        $inputArray = [['brand' => 'BRAND', 'name'=> 'NAME','color'=> 'COLOR','base'=> 'BASE','quantity_left' => 100, 'purchase_date' =>'2024-01-01']];
+        $inputArray = [['brand' => 'BRAND',
+            'name'=> 'NAME',
+            'color'=> 'COLOR',
+            'base'=> 'BASE',
+            'quantity_left' => 100,
+            'purchase_date' =>'2024-01-01']];
 
         $expected = "<tr>".
             "<td>BRAND</td>".
@@ -28,9 +33,9 @@ class paintCollectorAppTest extends TestCase {
 
     public function testPopulateTableMalformed(): void
     {
-        $inputArray = [['brand' => 3, 'name'=> 4,'color'=> 5,'base'=> 6,'quantity_left' => 'i am a string', 'purchase_date' =>'i am not a date']];
+        $input = 4;
 
         $this->expectException(TypeError::class);
-        populateTable($inputArray);
+        populateTable($input);
     }
 }

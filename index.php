@@ -25,18 +25,18 @@ if (!$result) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <table>
-        <tr>
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Base</th>
-            <th>Quantity Remaining</th>
-            <th>Purchase Date</th>
-        </tr>
-        <?php
-        echo populateTable($table);
-        ?>
-    </table>
+        <table>
+            <tr>
+                <th>Brand</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Base</th>
+                <th>Quantity Remaining</th>
+                <th>Purchase Date</th>
+            </tr>
+            <?php
+                echo populateTable($table);
+            ?>
+        </table>
     </body>
 </html>
