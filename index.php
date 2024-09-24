@@ -4,7 +4,7 @@ require_once 'paint-collector-app.php';
 $db = returnDb();
 
 function retrieveAllQuery($db) {
-    $query = $db->prepare('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
+    $query = $db->prepare("SELECT `paints`.`brand`, `paints`.`name`, `paints`.`color`, `bases`.`name` AS 'base', `paints`.`quantity_left`, `paints`.`purchase_date` FROM `paints` JOIN `bases` ON `paints`.`base` = `bases`.`id`;");
     $result = $query->execute();
     return $query->fetchAll();
 }
