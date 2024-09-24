@@ -6,14 +6,8 @@ require_once 'paint-collector-app.php';
 $db = returnDb();
 
 $query = $db->prepare ('SELECT `brand`, `name`, `color`, `base`, `quantity_left`, `purchase_date` FROM `paints`');
-
 $result = $query->execute();
-
-if (!$result) {
-    echo 'error with result';
-} else {
-    $table = $query->fetchAll();
-}
+$table = $query->fetchAll();
 
 ?>
 <!DOCTYPE html>

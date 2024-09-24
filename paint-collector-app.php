@@ -13,7 +13,7 @@ function returnDb()
 
 function populateTable (array $table) {
     $row = '';
-    foreach ($table as $key => $value) {
+    foreach ($table as $value) {
         $row .= "<tr>".
         "<td>{$value['brand']}</td>".
         "<td>{$value['name']}</td>".
