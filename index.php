@@ -1,6 +1,4 @@
 <?php
-// TASK 3
-//  1) style.
 
 require_once 'paint-collector-app.php';
 $db = returnDb();
