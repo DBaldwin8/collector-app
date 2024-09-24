@@ -14,13 +14,12 @@ function returnDb()
 function populateTable (array $table) {
     $row = '';
     foreach ($table as $value) {
-        $quan = ($value['quantity_left']/1000);
         $row .= "<tr>".
         "<td class='entry'>{$value['brand']}</td>".
         "<td class='entry'>{$value['name']}</td>".
         "<td class='entry'>{$value['color']}</td>".
         "<td class='entry'>{$value['base']}</td>".
-        "<td class='entry'>$quan</td>".
+        "<td class='entry'>{$value['quantity_left']}</td>".
         "<td class='entry'>{$value['purchase_date']}</td>".
         "</tr>";
     }

@@ -14,7 +14,7 @@ class paintCollectorAppTest extends TestCase {
             'name'=> 'NAME',
             'color'=> 'COLOR',
             'base'=> 'BASE',
-            'quantity_left' => 100,
+            'quantity_left' => 5.5,
             'purchase_date' =>'2024-01-01']];
 
         $expected = "<tr>".
@@ -22,7 +22,7 @@ class paintCollectorAppTest extends TestCase {
             "<td class='entry'>NAME</td>".
             "<td class='entry'>COLOR</td>".
             "<td class='entry'>BASE</td>".
-            "<td class='entry'>0.1</td>".
+            "<td class='entry'>5.5</td>".
             "<td class='entry'>2024-01-01</td>".
             "</tr>";
 
