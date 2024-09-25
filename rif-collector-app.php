@@ -19,6 +19,7 @@ function populateTable (array $table) {
         "<td class='entry'>{$value['model']}</td>".
         "<td class='entry'>{$value['type']}</td>".
         "<td class='entry'>{$value['color']}</td>".
+        "<td class='entry'>{$value['mags_owned']}</td>".
         "<td class='entry'>{$value['power_source']}</td>".
         "<td class='entry'>{$value['sites_visited']}</td>".
         "<td class='entry'>{$value['purchase_date']}</td>".

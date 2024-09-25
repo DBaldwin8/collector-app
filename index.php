@@ -4,7 +4,7 @@ require_once 'rif-collector-app.php';
 $db = returnDb();
 
 function retrieveAllQuery($db) {
-    $query = $db->prepare("SELECT `rifs`.`make`, `rifs`.`model`, `rifs`.`type`, `colors`.`color` AS 'color', `rifs`.`power_source`, `rifs`.`site_visited`, `rifs`.`purchased_date` FROM `rifs` JOIN `colors` ON `rifs`.`color` = `colors`.`id`;");
+    $query = $db->prepare("SELECT `rifs`.`make`, `rifs`.`model`, `rifs`.`type`, `colors`.`color` AS 'color', `rifs`.`mags_owned`, `rifs`.`power_source`, `rifs`.`sites_visited`, `rifs`.`purchase_date` FROM `rifs` JOIN `colors` ON `rifs`.`color` = `colors`.`id`;");
     $result = $query->execute();
     return $query->fetchAll();
 }
@@ -20,15 +20,16 @@ function retrieveAllQuery($db) {
     </head>
     <body>
         <div class="container">
-            <h1>Paint Leftover</h1>
+            <h1>My RIFs</h1>
             <table class="table">
                 <tr>
                     <th class="heading">Make</th>
                     <th class="heading">Model</th>
                     <th class="heading">Type</th>
                     <th class="heading">Color</th>
+                    <th class="heading">Mags</th>
                     <th class="heading">Power</th>
-                    <th class="heading"># Sites visited</th>
+                    <th class="heading">Sites visited</th>
                     <th class="heading">Purchase Date</th>
                 </tr>
                 <?php

@@ -14,15 +14,17 @@ class rifCollectorAppTest extends TestCase {
             'model'=> 'MODEL',
             'type'=> 'TYPE',
             'color' => 'COLOR',
+            'mags_owned' => 2,
             'power_source' => 'POWER SOURCE',
             'sites_visited' => 1,
-            'purchased_date' => '2024-01-01']];
+            'purchase_date' => '2024-01-01']];
 
         $expected = "<tr>".
             "<td class='entry'>MAKE</td>".
             "<td class='entry'>MODEL</td>".
             "<td class='entry'>TYPE</td>".
             "<td class='entry'>COLOR</td>".
+            "<td class='entry'>2</td>".
             "<td class='entry'>POWER SOURCE</td>".
             "<td class='entry'>1</td>".
             "<td class='entry'>2024-01-01</td>".
