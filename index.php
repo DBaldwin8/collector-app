@@ -13,7 +13,7 @@ function retrieveAllQuery($db) {
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <title>Leftover paint - collector app</title>
+        <title>My RIFs - collector app</title>
         <link rel="stylesheet" href="modern-normalize.css">
         <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
