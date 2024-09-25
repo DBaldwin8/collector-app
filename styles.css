@@ -76,6 +76,5 @@ h1 {
 @media screen AND (max-width: 710px) {
     .scrollable {
         overflow-x: scroll;
-        scroll-
     }
 }
