@@ -33,5 +33,43 @@ $db = returnDb();
                 </table>
             </div>
         </div>
+            <div class="add-form">
+                <form class="form-container" action="index.php" method="GET">
+                    <div class="input-container">
+                        <label for="make">Make: </label>
+                        <input type="text" name="make" id="make">
+                    </div>
+                    <div class="input-container">
+                        <label for="make">Model: </label>
+                        <input type="text" name="model" id="model">
+                    </div>
+                    <div class="input-container">
+                        <label for="type">Type: </label>
+                        <input type="text" name="type" id="type">
+                    </div>
+                    <div class="input-container">
+                        <label for="colour">Colour: </label>
+                        <input type="text" name="colour" id="colour">
+                    </div>
+                    <div class="input-container">
+                        <label for="mags">Mags: </label>
+                        <input type="text" name="mags" id="mags">
+                    </div>
+                    <div class="input-container">
+                        <label for="power">Power: </label>
+                        <input type="text" name="power" id="power">
+                    </div>
+                    <div class="input-container">
+                        <label for="sites">Sites visited: </label>
+                        <input type="text" name="sites" id="sites">
+                    </div>
+                    <div class="input-container">
+                        <label for="purchased">Purchased date: </label>
+                        <input type="text" name="purchased" id="purchased">
+                    </div>
+
+
+                </form>
+            </div>
     </body>
 </html>
