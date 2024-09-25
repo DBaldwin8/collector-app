@@ -17,11 +17,16 @@ h1 {
     padding: 2%;
 }
 
+.scrollable {
+    width: 95%;
+}
+
 .table {
     border: 2px black solid;
     background-color: #f4f2eb;
     text-align: center;
     border-collapse: collapse;
+    width: 100%;
 }
 
 .heading {
@@ -66,4 +71,11 @@ h1 {
 
 .purchase-entry {
     background-color: rgba(178, 241, 77, 0.62);
+}
+
+@media screen AND (max-width: 710px) {
+    .scrollable {
+        overflow-x: scroll;
+        scroll-
+    }
 }

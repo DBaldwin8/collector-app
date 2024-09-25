@@ -15,21 +15,23 @@ $db = returnDb();
     <body>
         <div class="container">
             <h1>My RIFs</h1>
-            <table class="table">
-                <tr>
-                    <th class="heading">Make</th>
-                    <th class="heading">Model</th>
-                    <th class="heading">Type</th>
-                    <th class="heading">Color</th>
-                    <th class="heading">Mags</th>
-                    <th class="heading">Power</th>
-                    <th class="heading">Sites visited</th>
-                    <th class="heading">Purchase Date</th>
-                </tr>
-                <?php
-                    echo populateTable(retrieveAllQuery($db));
-                ?>
-            </table>
+            <div class="scrollable">
+                <table class="table">
+                    <tr>
+                        <th class="heading">Make</th>
+                        <th class="heading">Model</th>
+                        <th class="heading">Type</th>
+                        <th class="heading">Color</th>
+                        <th class="heading">Mags</th>
+                        <th class="heading">Power</th>
+                        <th class="heading">Sites visited</th>
+                        <th class="heading">Purchase Date</th>
+                    </tr>
+                    <?php
+                        echo populateTable(retrieveAllQuery($db));
+                    ?>
+                </table>
+            </div>
         </div>
     </body>
 </html>
