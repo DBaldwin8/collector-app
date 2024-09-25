@@ -15,11 +15,12 @@ function populateTable (array $table) {
     $row = '';
     foreach ($table as $value) {
         $row .= "<tr>".
-        "<td class='entry'>{$value['brand']}</td>".
-        "<td class='entry'>{$value['name']}</td>".
+        "<td class='entry'>{$value['make']}</td>".
+        "<td class='entry'>{$value['model']}</td>".
+        "<td class='entry'>{$value['type']}</td>".
         "<td class='entry'>{$value['color']}</td>".
-        "<td class='entry'>{$value['base']}</td>".
-        "<td class='entry'>{$value['quantity_left']}</td>".
+        "<td class='entry'>{$value['power_source']}</td>".
+        "<td class='entry'>{$value['sites_visited']}</td>".
         "<td class='entry'>{$value['purchase_date']}</td>".
         "</tr>";
     }

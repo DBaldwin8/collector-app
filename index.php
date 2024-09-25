@@ -1,10 +1,10 @@
 <?php
 
-require_once 'paint-collector-app.php';
+require_once 'rif-collector-app.php';
 $db = returnDb();
 
 function retrieveAllQuery($db) {
-    $query = $db->prepare("SELECT `paints`.`brand`, `paints`.`name`, `paints`.`color`, `bases`.`name` AS 'base', `paints`.`quantity_left`, `paints`.`purchase_date` FROM `paints` JOIN `bases` ON `paints`.`base` = `bases`.`id`;");
+    $query = $db->prepare("SELECT `rifs`.`make`, `rifs`.`model`, `rifs`.`type`, `colors`.`color` AS 'color', `rifs`.`power_source`, `rifs`.`site_visited`, `rifs`.`purchased_date` FROM `rifs` JOIN `colors` ON `rifs`.`color` = `colors`.`id`;");
     $result = $query->execute();
     return $query->fetchAll();
 }
@@ -23,11 +23,12 @@ function retrieveAllQuery($db) {
             <h1>Paint Leftover</h1>
             <table class="table">
                 <tr>
-                    <th class="heading">Brand</th>
-                    <th class="heading">Name</th>
+                    <th class="heading">Make</th>
+                    <th class="heading">Model</th>
+                    <th class="heading">Type</th>
                     <th class="heading">Color</th>
-                    <th class="heading">Base</th>
-                    <th class="heading">Quantity Remaining (L)</th>
+                    <th class="heading">Power</th>
+                    <th class="heading"># Sites visited</th>
                     <th class="heading">Purchase Date</th>
                 </tr>
                 <?php
