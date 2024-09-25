@@ -3,12 +3,6 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
-function retrieveAllQuery($db) {
-    $query = $db->prepare("SELECT `rifs`.`make`, `rifs`.`model`, `rifs`.`type`, `colors`.`color` AS 'color', `rifs`.`mags_owned`, `rifs`.`power_source`, `rifs`.`sites_visited`, `rifs`.`purchase_date` FROM `rifs` JOIN `colors` ON `rifs`.`color` = `colors`.`id`;");
-    $result = $query->execute();
-    return $query->fetchAll();
-}
-
 ?>
 <!DOCTYPE html>
 <html lang='en'>

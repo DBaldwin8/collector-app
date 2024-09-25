@@ -35,3 +35,35 @@ h1 {
     border: 1px black solid;
     padding: 3px 10px 3px 10px;
 }
+
+.make-entry {
+    background-color: rgba(2, 182, 182, 0.62);
+}
+
+.model-entry {
+    background-color: rgba(7, 204, 204, 0.62);
+}
+
+.type-entry {
+    background-color: rgba(232, 197, 17, 0.62);
+}
+
+.color-entry{
+    background-color: rgba(182, 156, 21, 0.62);
+}
+
+.mags-entry {
+    background-color: rgba(85, 107, 47, 0.62);
+}
+
+.power-entry {
+    background-color: rgba(255, 255, 0, 0.62);
+}
+
+.sites-entry {
+    background-color: rgb(14, 158, 234);
+}
+
+.purchase-entry {
+    background-color: rgba(178, 241, 77, 0.62);
+}

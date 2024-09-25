@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class rifCollectorAppTest extends TestCase {
 
-    public function testPopulateTable(): void
+    public function testPopulateTableSuccess(): void
     {
         $inputArray = [['make' => 'MAKE',
             'model'=> 'MODEL',
