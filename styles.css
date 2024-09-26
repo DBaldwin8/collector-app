@@ -89,6 +89,7 @@ h1 {
 
 .submit:hover {
     background-color: #f4f2eb;
+    font-weight: bold;
 }
 
 @media screen AND (max-width: 710px) {
