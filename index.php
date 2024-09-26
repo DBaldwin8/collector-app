@@ -31,9 +31,35 @@ $db = returnDb();
                         echo populateTable(retrieveAllQuery($db));
                     ?>
                     <tr>
-                        <td colspan="8">Add Entry:</td>
+                        <th class="entry" colspan="8">Add Entry</th>
                     </tr>
                     <form action="index.php" method="POST">
+                        <tr>
+                            <th class="entry">
+                                <label for="make">Make:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="model">Model:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="type">Type:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="color">Color:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="mags">Mags:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="power">Power:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="sites">Sites Visited:</label>
+                            </th>
+                            <th class="entry">
+                                <label for="purchased">Purchased Date:</label>
+                            </th>
+                        </tr>
                         <tr>
                             <td class="input">
                                 <input class="shrink" type="text" name="make" id="make">

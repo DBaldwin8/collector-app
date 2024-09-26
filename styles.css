@@ -86,6 +86,10 @@ h1 {
 .submit {
     background-color: #dadada;
 }
+.submit:hover {
+    background-color: #f4f2eb;
+}
+
 
 @media screen AND (max-width: 710px) {
     .scrollable {
