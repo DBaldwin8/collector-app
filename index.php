@@ -30,68 +30,6 @@ $db = returnDb();
                     <?php
                         echo populateTable(retrieveAllQuery($db));
                     ?>
-                    <tr>
-                        <th class="entry" colspan="8">Add Entry</th>
-                    </tr>
-                    <form action="index.php" method="POST">
-                        <tr>
-                            <th class="entry">
-                                <label for="make">Make:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="model">Model:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="type">Type:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="color">Color:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="mags">Mags:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="power">Power:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="sites">Sites Visited:</label>
-                            </th>
-                            <th class="entry">
-                                <label for="purchased">Purchased Date:</label>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="input">
-                                <input class="shrink" type="text" name="make" id="make">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="model" id="model">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="type" id="type">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="color" id="color">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="mags" id="mags">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="power" id="power">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="sites" id="sites">
-                            </td>
-                            <td class="input">
-                                <input class="shrink" type="text" name="purchased" id="purchased">
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td colspan="8">
-                                <input class="shrink submit" type="submit" value="Add To Table">
-                            </td>
-                        </tr>
-                    </form>
                 </table>
             </div>
         </div>
