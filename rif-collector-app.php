@@ -34,4 +34,17 @@ function retrieveAllQuery($db) {
     return $query->fetchAll();
 }
 
+function addToDatabase(array &$entryToAdd) {
+
+    strtolower($entryToAdd['color']);
+    if ($entryToAdd['color'] === 'black') {
+        $entryToAdd['color'] = 2;
+    } elseif ($entryToAdd['color'] === 'tan') {
+        $entryToAdd['color'] = 1;
+    }       // else throw error/warning for invalid entry???
+
+    $query = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES ({$entryToAdd['make']}, {$entryToAdd['model']}, {$entryToAdd['type']}, {$entryToAdd['color']}. {$entryToAdd['mags']}, {$entryToAdd['power']}, {$entryToAdd['sites']}, {$entryToAdd['purchased']}) ");
+
+}
+
 ?>
