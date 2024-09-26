@@ -3,7 +3,7 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
-if ( (!isset($entryToAdd['make'])) && (!isset($entryToAdd['model'])) && (!isset($entryToAdd['type'])) && (!isset($entryToAdd['color'])) && (!isset($entryToAdd['mags'])) && (!isset($entryToAdd['power'])) && (!isset($entryToAdd['sites'])) && (!isset($entryToAdd['purchased'])) ) {
+if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'])) && (isset($_POST['color'])) && (isset($_POST['mags'])) && (isset($_POST['power'])) && (isset($_POST['sites'])) && (isset($_POST['purchased'])) ) {
     addToDatabase($_POST, $db);
 }
 
@@ -99,8 +99,5 @@ if ( (!isset($entryToAdd['make'])) && (!isset($entryToAdd['model'])) && (!isset(
                 </table>
             </div>
         </div>
-    <?php
-    var_dump($_POST);
-    ?>
     </body>
 </html>

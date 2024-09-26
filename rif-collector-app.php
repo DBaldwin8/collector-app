@@ -86,7 +86,7 @@ function addToDatabase(array &$entryToAdd, object $db) {
         $sites = filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT);
         $purchased = filter_var($entryToAdd['purchased'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
+        $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
         $result = $addQuery->execute([
             'make' => $make,
             'model' => $model,
