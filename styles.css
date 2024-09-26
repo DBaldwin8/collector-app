@@ -87,7 +87,7 @@ h1 {
     background-color: #dadada;
 }
 
-@media screen AND (max-width: 865px) {
+@media screen AND (max-width: 710px) {
     .scrollable {
         overflow-x: scroll;
     }
