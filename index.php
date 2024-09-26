@@ -3,7 +3,9 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
-addToDatabase($_POST, $db);
+if ( (!isset($entryToAdd['make'])) && (!isset($entryToAdd['model'])) && (!isset($entryToAdd['type'])) && (!isset($entryToAdd['color'])) && (!isset($entryToAdd['mags'])) && (!isset($entryToAdd['power'])) && (!isset($entryToAdd['sites'])) && (!isset($entryToAdd['purchased'])) ) {
+    addToDatabase($_POST, $db);
+}
 
 ?>
 <!DOCTYPE html>

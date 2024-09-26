@@ -42,28 +42,28 @@ function addToDatabase(array &$entryToAdd, object $db) {
 
     //or could use trow new exception below?
 
-    if(!isset($entryToAdd['make']) && !is_string($entryToAdd['make'])){
+    if (!is_string($entryToAdd['make'])){
         return $message = "Error with your 'Make' input";
-    } if (!isset($entryToAdd['model']) && !is_string($entryToAdd['model'])){
+    } if (!is_string($entryToAdd['model'])){
         return $message = "Error with your 'Model' input";
-    } if (!isset($entryToAdd['type']) && !is_string($entryToAdd['type'])){
+    } if (!is_string($entryToAdd['type'])){
         return $message = "Error with your 'Type' input";
-    }  if (!isset($entryToAdd['color']) && !is_string($entryToAdd['color'])){
+    }  if (!is_string($entryToAdd['color'])){
         return $message = "Error with your 'Color' input";
-    } if (!isset($entryToAdd['mags']) && !filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
+    } if (!filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
         return $message = "Error with your 'Mags' input";
-    } if (!isset($entryToAdd['power']) && !is_string($entryToAdd['power'])){
+    } if (!is_string($entryToAdd['power'])){
         return $message = "Error with your 'Power' input";
-    } if (!isset($entryToAdd['sites'])  && !filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
+    } if (!filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
         return $message = "Error with your 'Sites Visited' input";
-    } if (!isset($entryToAdd['purchased']) && !preg_match($dateRegex, $entryToAdd['purchased'])){
+    } if (!preg_match($dateRegex, $entryToAdd['purchased'])){
         // could add validation to date before today's date by converting to unix?
         return $message = "Error with your 'Purchased Date' input";
     } else {
 
         //////////// Set color id entry
 
-        $color = filter_var($entryToAdd['color'],FILTER_SANITIZE_STRING);
+        $color = filter_var($entryToAdd['color'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $color = strtolower($color);
 
         if ($color === 'white') {
@@ -78,13 +78,13 @@ function addToDatabase(array &$entryToAdd, object $db) {
 
         /////////// SANITIZATION
 
-        $make = filter_var($entryToAdd['make'],FILTER_SANITIZE_STRING);
-        $model = filter_var($entryToAdd['model'],FILTER_SANITIZE_STRING);
-        $type = filter_var($entryToAdd['type'],FILTER_SANITIZE_STRING);
+        $make = filter_var($entryToAdd['make'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $model = filter_var($entryToAdd['model'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $type = filter_var($entryToAdd['type'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mags = filter_var($entryToAdd['mags'], FILTER_SANITIZE_NUMBER_INT);
-        $power = filter_var($entryToAdd['power'], FILTER_SANITIZE_STRING);
+        $power = filter_var($entryToAdd['power'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $sites = filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT);
-        $purchased = filter_var($entryToAdd['purchased'],FILTER_SANITIZE_STRING);
+        $purchased = filter_var($entryToAdd['purchased'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
         $result = $addQuery->execute([
@@ -100,6 +100,7 @@ function addToDatabase(array &$entryToAdd, object $db) {
 
         return $message = 'Entry Added successfully';
     }
+
 }
 
 ?>
