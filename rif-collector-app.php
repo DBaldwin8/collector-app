@@ -48,15 +48,15 @@ function addToDatabase(array &$entryToAdd, object $db) {
         return $message = "Error with your 'Model' input";
     } if (!isset($entryToAdd['type']) && !is_string($entryToAdd['type'])){
         return $message = "Error with your 'Model' input";
-    }  if (isset($entryToAdd['color']) && !is_string($entryToAdd['color'])){
+    }  if (!isset($entryToAdd['color']) && !is_string($entryToAdd['color'])){
         return $message = "Error with your 'Color' input";
-    } if (isset($entryToAdd['mags']) && !filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
+    } if (!isset($entryToAdd['mags']) && !filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
         return $message = "Error with your 'Mags' input";
-    } if (isset($entryToAdd['power']) && !is_string($entryToAdd['power'])){
+    } if (!isset($entryToAdd['power']) && !is_string($entryToAdd['power'])){
         return $message = "Error with your 'Power' input";
-    } if (isset($entryToAdd['sites'])  && !filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
+    } if (!isset($entryToAdd['sites'])  && !filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
         return $message = "Error with your 'Sites Visited' input";
-    } if (isset($entryToAdd['purchased']) && !preg_match($dateRegex, $entryToAdd['purchased'])){
+    } if (!isset($entryToAdd['purchased']) && !preg_match($dateRegex, $entryToAdd['purchased'])){
         return $message = "Error with your 'Purchased Date' input";
     } else {
 
@@ -72,6 +72,7 @@ function addToDatabase(array &$entryToAdd, object $db) {
 
         $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES ({$entryToAdd['make']}, {$entryToAdd['model']}, {$entryToAdd['type']}, {$entryToAdd['color']}. {$entryToAdd['mags']}, {$entryToAdd['power']}, {$entryToAdd['sites']}, {$entryToAdd['purchased']}) ");
 
+        return $message = 'Entry Added successfully';
     }
 }
 
