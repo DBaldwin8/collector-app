@@ -34,17 +34,45 @@ function retrieveAllQuery($db) {
     return $query->fetchAll();
 }
 
-function addToDatabase(array &$entryToAdd) {
+function addToDatabase(array &$entryToAdd, object $db) {
 
-    strtolower($entryToAdd['color']);
-    if ($entryToAdd['color'] === 'black') {
-        $entryToAdd['color'] = 2;
-    } elseif ($entryToAdd['color'] === 'tan') {
-        $entryToAdd['color'] = 1;
-    }       // else throw error/warning for invalid entry???
+    $message = '' ;
 
-    $query = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES ({$entryToAdd['make']}, {$entryToAdd['model']}, {$entryToAdd['type']}, {$entryToAdd['color']}. {$entryToAdd['mags']}, {$entryToAdd['power']}, {$entryToAdd['sites']}, {$entryToAdd['purchased']}) ");
+    //or could use trow new exception?
 
+    $dateRegex = 
+
+    if(!isset($entryToAdd['make']) && !is_string($entryToAdd['make'])){
+        return $message = "Could not find your 'Make' input";
+    } if (!isset($entryToAdd['model']) && !is_string($entryToAdd['model'])){
+        return $message = "Could not find your 'Model' input";
+    } if (!isset($entryToAdd['type']) && !is_string($entryToAdd['type'])){
+        return $message = "Could not find your 'Model' input";
+    }  if (isset($entryToAdd['color']) && !is_string($entryToAdd['color'])){
+        return $message = "Could not find your 'Color' input";
+    } if (isset($entryToAdd['mags']) && !filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
+        return $message = "Could not find your 'Mags' input";
+    } if (isset($entryToAdd['power']) && !is_string($entryToAdd['power'])){
+        return $message = "Could not find your 'Power' input";
+    } if (isset($entryToAdd['sites'])  && !filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
+        return $message = "Could not find your 'Sites Visited' input";
+    } if (isset($entryToAdd['purchased']) ){
+        return $message = "Could not find your 'Purchased Date' input";
+    } else {
+
+        strtolower($entryToAdd['color']);
+
+        if ($entryToAdd['color'] === 'white') {
+            $entryToAdd['color'] = 3;
+        } elseif ($entryToAdd['color'] === 'black') {
+            $entryToAdd['color'] = 2;
+        } elseif ($entryToAdd['color'] === 'tan') {
+            $entryToAdd['color'] = 1;
+        }
+
+        $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchased_date`) VALUES ({$entryToAdd['make']}, {$entryToAdd['model']}, {$entryToAdd['type']}, {$entryToAdd['color']}. {$entryToAdd['mags']}, {$entryToAdd['power']}, {$entryToAdd['sites']}, {$entryToAdd['purchased']}) ");
+
+    }
 }
 
 ?>

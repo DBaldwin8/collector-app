@@ -3,6 +3,8 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
+addToDatabase($_POST, $db);
+
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -74,16 +76,16 @@ $db = returnDb();
                                 <input class="shrink" type="text" name="color" id="color">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="mags" id="mags">
+                                <input class="shrink" type="number" name="mags" id="mags">
                             </td>
                             <td class="input">
                                 <input class="shrink" type="text" name="power" id="power">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="sites" id="sites">
+                                <input class="shrink" type="number" name="sites" id="sites">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="purchased" id="purchased">
+                                <input class="shrink" type="date" name="purchased" id="purchased">
                             </td>
                         </tr>
                         <tr class="">
