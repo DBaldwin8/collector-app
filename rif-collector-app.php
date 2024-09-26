@@ -40,24 +40,24 @@ function addToDatabase(array &$entryToAdd, object $db) {
 
     //or could use trow new exception?
 
-    $dateRegex = 
+    $dateRegex =
 
     if(!isset($entryToAdd['make']) && !is_string($entryToAdd['make'])){
-        return $message = "Could not find your 'Make' input";
+        return $message = "Error with your 'Make' input";
     } if (!isset($entryToAdd['model']) && !is_string($entryToAdd['model'])){
-        return $message = "Could not find your 'Model' input";
+        return $message = "Error with your 'Model' input";
     } if (!isset($entryToAdd['type']) && !is_string($entryToAdd['type'])){
-        return $message = "Could not find your 'Model' input";
+        return $message = "Error with your 'Model' input";
     }  if (isset($entryToAdd['color']) && !is_string($entryToAdd['color'])){
-        return $message = "Could not find your 'Color' input";
+        return $message = "Error with your 'Color' input";
     } if (isset($entryToAdd['mags']) && !filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
-        return $message = "Could not find your 'Mags' input";
+        return $message = "Error with your 'Mags' input";
     } if (isset($entryToAdd['power']) && !is_string($entryToAdd['power'])){
-        return $message = "Could not find your 'Power' input";
+        return $message = "Error with your 'Power' input";
     } if (isset($entryToAdd['sites'])  && !filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
-        return $message = "Could not find your 'Sites Visited' input";
-    } if (isset($entryToAdd['purchased']) ){
-        return $message = "Could not find your 'Purchased Date' input";
+        return $message = "Error with your 'Sites Visited' input";
+    } if (isset($entryToAdd['purchased']) && !preg_match($dateRegex, $entryToAdd['purchased'])){
+        return $message = "Error with your 'Purchased Date' input";
     } else {
 
         strtolower($entryToAdd['color']);
