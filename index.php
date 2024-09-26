@@ -4,7 +4,7 @@ require_once 'rif-collector-app.php';
 $db = returnDb();
 
 if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'])) && (isset($_POST['color'])) && (isset($_POST['mags'])) && (isset($_POST['power'])) && (isset($_POST['sites'])) && (isset($_POST['purchased'])) ) {
-    addToDatabase($_POST, $db);
+    addToDatabase($_POST, $db, $message);
 }
 
 ?>
@@ -97,6 +97,11 @@ if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'
                         </tr>
                     </form>
                 </table>
+                <div>
+                    <?php
+                        echo $message;
+                    ?>
+                </div>
             </div>
         </div>
     </body>

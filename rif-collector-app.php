@@ -34,9 +34,9 @@ function retrieveAllQuery($db) {
     return $query->fetchAll();
 }
 
-function addToDatabase(array &$entryToAdd, object $db) {
+$message = "";
 
-    $message = '' ;
+function addToDatabase(array &$entryToAdd, object $db, string &$message) {
 
     $dateRegex = '~^\d{4}-\d{2}-\d{2}$~';
 
@@ -73,7 +73,7 @@ function addToDatabase(array &$entryToAdd, object $db) {
         } elseif ($entryToAdd['color'] === 'tan') {
             $color = 1;
         } else{
-            return $message = "This option has not been added to the database.";
+            return $message = "Color option not available in database.";
         }
 
         /////////// SANITIZATION
@@ -98,9 +98,10 @@ function addToDatabase(array &$entryToAdd, object $db) {
             'purchased' => $purchased,
         ]);
 
-        return $message = 'Entry Added successfully';
-    }
+            return $message = 'Entry Added successfully';
 
+    }
+    return $message;
 }
 
 ?>
