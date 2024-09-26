@@ -28,7 +28,6 @@ h1 {
     background-color: #f4f2eb;
     text-align: center;
     border-collapse: collapse;
-    table-layout: fixed;
     width: 100%;
 }
 
@@ -84,7 +83,11 @@ h1 {
     width: 100%;
 }
 
-@media screen AND (max-width: 710px) {
+.submit {
+    background-color: #dadada;
+}
+
+@media screen AND (max-width: 865px) {
     .scrollable {
         overflow-x: scroll;
     }

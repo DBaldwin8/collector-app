@@ -30,6 +30,9 @@ $db = returnDb();
                     <?php
                         echo populateTable(retrieveAllQuery($db));
                     ?>
+                    <tr>
+                        <td colspan="8">Add Entry:</td>
+                    </tr>
                     <form action="index.php" method="POST">
                         <tr>
                             <td class="input">
@@ -59,7 +62,7 @@ $db = returnDb();
                         </tr>
                         <tr class="">
                             <td colspan="8">
-                                <input class="shrink" type="submit" value="Add To Table">
+                                <input class="shrink submit" type="submit" value="Add To Table">
                             </td>
                         </tr>
                     </form>
