@@ -36,7 +36,7 @@ function retrieveAllQuery($db) {
 
 $message = "";
 
-function addToDatabase(array &$entryToAdd, object $db, string &$message) {
+function addToDatabase(array $entryToAdd, object $db, string &$message) {
 
     $dateRegex = '~^\d{4}-\d{2}-\d{2}$~';
 
@@ -77,29 +77,42 @@ function addToDatabase(array &$entryToAdd, object $db, string &$message) {
         }
 
         /////////// SANITIZATION
+        /// Opted for strip_tags to removed tags as opposed to htmlspecialchars to convert tags,
+        /// then added another if block so that empty strings don't get stored.
 
-        $make = filter_var($entryToAdd['make'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $model = filter_var($entryToAdd['model'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $type = filter_var($entryToAdd['type'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $make = strip_tags($entryToAdd['make']);
+        $model = strip_tags($entryToAdd['model']);
+        $type = strip_tags($entryToAdd['type']);
         $mags = filter_var($entryToAdd['mags'], FILTER_SANITIZE_NUMBER_INT);
-        $power = filter_var($entryToAdd['power'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $power = strip_tags($entryToAdd['power']);
         $sites = filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT);
-        $purchased = filter_var($entryToAdd['purchased'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $purchased = ($entryToAdd['purchased']); // Val and San handled by regex in first block.
 
-        $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
-        $result = $addQuery->execute([
-            'make' => $make,
-            'model' => $model,
-            'type' => $type,
-            'color' => $color,
-            'mags' => $mags,
-            'power' => $power,
-            'sites' => $sites,
-            'purchased' => $purchased,
-        ]);
+        if ($make === "") {
+            return $message = "Error with your 'Make' input";
+        } if ($model === "") {
+            return $message = "Error with your 'Model' input";
+        } if ($type === "") {
+            return $message = "Error with your 'Type' input";
+        } if ($power === "") {
+            return $message = "Error with your 'Power' input";
+        } else {
+
+            $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
+            $result = $addQuery->execute([
+                'make' => $make,
+                'model' => $model,
+                'type' => $type,
+                'color' => $color,
+                'mags' => $mags,
+                'power' => $power,
+                'sites' => $sites,
+                'purchased' => $purchased,
+            ]);
 
             return $message = 'Entry Added successfully';
-
+        }
+        return $message;
     }
     return $message;
 }
