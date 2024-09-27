@@ -73,6 +73,7 @@ class rifCollectorAppTest extends TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+
     public function testValidateSanitizeEntryMalformed(): void {
         $input = 'oh no I am going to break it';
 
@@ -80,7 +81,7 @@ class rifCollectorAppTest extends TestCase {
         populateTable($input);
     }
 
-    /*
+/*
     public function testValidateSanitizeEntryMalformed(): void {
         $input = [
             ['make' => 'MAKE',
@@ -95,6 +96,5 @@ class rifCollectorAppTest extends TestCase {
 
         $this->expectException(TypeError::class);
     }
-    */
-
+*/
 }
