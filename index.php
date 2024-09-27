@@ -3,12 +3,7 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
-if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'])) && (isset($_POST['color'])) && (isset($_POST['mags'])) && (isset($_POST['power'])) && (isset($_POST['sites'])) && (isset($_POST['purchased'])) ) {
-    validateSanitizeEntry($_POST, $validatedSanitizedArr, $message);
-    if ($message === '') {
-        addToDatabase($validatedSanitizedArr, $db, $message);
-    }
-}
+hasFormBeenSubmitted($_POST, $validatedSanitizedArr, $db,$message);
 
 ?>
 <!DOCTYPE html>

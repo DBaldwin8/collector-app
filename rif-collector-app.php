@@ -113,4 +113,13 @@ function addToDatabase(array $valSanArr, object $db, string &$message) {
     }
 }
 
+function hasFormBeenSubmitted(array $array, $validatedSanitizedArr, $db, &$message) {
+    if ( (isset($array['make'])) && (isset($array['model'])) && (isset($array['type'])) && (isset($array['color'])) && (isset($array['mags'])) && (isset($array['power'])) && (isset($array['sites'])) && (isset($array['purchased'])) ) {
+        validateSanitizeEntry($array, $validatedSanitizedArr, $message);
+        if ($message === '') {
+            addToDatabase($validatedSanitizedArr, $db, $message);
+        }
+    }
+}
+
 ?>
