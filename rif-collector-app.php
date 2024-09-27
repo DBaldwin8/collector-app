@@ -66,8 +66,6 @@ function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$mes
         return $message = "Error with your 'Purchased Date' input";
     } else {
 
-        //////////// Set color id entry
-
         $color = strip_tags($entryToAdd['color']);
         $color = strtolower($color);
 
