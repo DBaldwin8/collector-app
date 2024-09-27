@@ -96,8 +96,12 @@ function addToDatabase(array $entryToAdd, object $db, string &$message) {
             return $message = "Error with your 'Model' input";
         } if ($type === "") {
             return $message = "Error with your 'Type' input";
+        } if (!$mags) {
+            return $message = "Error with your 'Mags' input";
         } if ($power === "") {
             return $message = "Error with your 'Power' input";
+        } if (!$sites){
+            return $message = "Error with your 'Sites Visited' input";
         } else {
 
             $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
