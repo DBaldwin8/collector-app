@@ -96,17 +96,22 @@ function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$mes
 
 function addToDatabase(array $valSanArr, object $db, string &$message) {
 
-            $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
-            $result = $addQuery->execute([
-                'make' => $valSanArr['make'],
-                'model' => $valSanArr['model'],
-                'type' => $valSanArr['type'],
-                'color' => $valSanArr['color'],
-                'mags' => $valSanArr['mags'],
-                'power' => $valSanArr['power'],
-                'sites' => $valSanArr['sites'],
-                'purchased' => $valSanArr['purchased']
-            ]);
-                return $message = 'Entry Added successfully';
+        $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
+        $result = $addQuery->execute([
+            'make' => $valSanArr['make'],
+            'model' => $valSanArr['model'],
+            'type' => $valSanArr['type'],
+            'color' => $valSanArr['color'],
+            'mags' => $valSanArr['mags'],
+            'power' => $valSanArr['power'],
+            'sites' => $valSanArr['sites'],
+            'purchased' => $valSanArr['purchased']
+        ]);
+
+        if (!$result) {
+            return $message = "there has been an error in adding to database";
+        } else {
+            return $message = 'Entry Added successfully';
+        }
     }
 ?>
