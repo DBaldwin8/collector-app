@@ -35,29 +35,34 @@ function retrieveAllQuery($db) {
 }
 
 $message = "";
+$validatedSanitizedArr = [];
 
-function addToDatabase(array $entryToAdd, object $db, string &$message) {
+function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$message) {
 
     $dateRegex = '~^\d{4}-\d{2}-\d{2}$~';
 
-    //or could use trow new exception below?
-
-    if (!is_string($entryToAdd['make'])){
+    if (!is_string($entryToAdd['make'])) {
         return $message = "Error with your 'Make' input";
-    } if (!is_string($entryToAdd['model'])){
+    }
+    if (!is_string($entryToAdd['model'])) {
         return $message = "Error with your 'Model' input";
-    } if (!is_string($entryToAdd['type'])){
+    }
+    if (!is_string($entryToAdd['type'])) {
         return $message = "Error with your 'Type' input";
-    }  if (!is_string($entryToAdd['color'])){
+    }
+    if (!is_string($entryToAdd['color'])) {
         return $message = "Error with your 'Color' input";
-    } if (!filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)){
+    }
+    if (!filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)) {
         return $message = "Error with your 'Mags' input";
-    } if (!is_string($entryToAdd['power'])){
+    }
+    if (!is_string($entryToAdd['power'])) {
         return $message = "Error with your 'Power' input";
-    } if (!filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)){
+    }
+    if (!filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)) {
         return $message = "Error with your 'Sites Visited' input";
-    } if (!preg_match($dateRegex, $entryToAdd['purchased'])){
-        // could add validation to date before today's date by converting to unix?
+    }
+    if (!preg_match($dateRegex, $entryToAdd['purchased'])) {
         return $message = "Error with your 'Purchased Date' input";
     } else {
 
@@ -66,58 +71,42 @@ function addToDatabase(array $entryToAdd, object $db, string &$message) {
         $color = strip_tags($entryToAdd['color']);
         $color = strtolower($color);
 
-        if ($color === ''){
-            return $message = "Error with your 'Color' input";
-        } elseif ($color === 'white') {
+        if ($color === 'white') {
             $color = 3;
         } elseif ($entryToAdd['color'] === 'black') {
             $color = 2;
         } elseif ($entryToAdd['color'] === 'tan') {
             $color = 1;
-        } else{
-            return $message = "Color option not available in database.";
-        }
-
-        /////////// SANITIZATION
-        /// Opted for strip_tags to removed tags as opposed to htmlspecialchars to convert tags,
-        /// then added another if block so that empty strings don't get stored.
-
-        $make = strip_tags($entryToAdd['make']);
-        $model = strip_tags($entryToAdd['model']);
-        $type = strip_tags($entryToAdd['type']);
-        $mags = filter_var($entryToAdd['mags'], FILTER_SANITIZE_NUMBER_INT);
-        $power = strip_tags($entryToAdd['power']);
-        $sites = filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT);
-        $purchased = ($entryToAdd['purchased']); // Val and San handled by regex in first block.
-
-        if ($make === "") {
-            return $message = "Error with your 'Make' input";
-        } if ($model === "") {
-            return $message = "Error with your 'Model' input";
-        } if ($type === "") {
-            return $message = "Error with your 'Type' input";
-        } if (!$mags) {
-            return $message = "Error with your 'Mags' input";
-        } if ($power === "") {
-            return $message = "Error with your 'Power' input";
-        } if (!$sites){
-            return $message = "Error with your 'Sites Visited' input";
         } else {
-
-            $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
-            $result = $addQuery->execute([
-                'make' => $make,
-                'model' => $model,
-                'type' => $type,
-                'color' => $color,
-                'mags' => $mags,
-                'power' => $power,
-                'sites' => $sites,
-                'purchased' => $purchased,
-            ]);
-            return $message = 'Entry Added successfully';
+            return $message = "Error with your 'Color' input";
         }
+
+        return $validatedSanitizedArr = [
+            'make' => htmlspecialchars($entryToAdd['make']),
+            'model' => htmlspecialchars($entryToAdd['model']),
+            'type' => htmlspecialchars($entryToAdd['type']),
+            'color' => $color,
+            'mags' => filter_var($entryToAdd['mags'], FILTER_SANITIZE_NUMBER_INT),
+            'power' => htmlspecialchars($entryToAdd['power']),
+            'sites' => filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT),
+            'purchased' => ($entryToAdd['purchased']),
+        ];
     }
 }
 
+function addToDatabase(array $valSanArr, object $db, string &$message) {
+
+            $addQuery = $db->prepare("INSERT INTO `rifs` (`make`, `model`, `type`, `color`, `mags_owned`, `power_source`, `sites_visited`, `purchase_date`) VALUES (:make, :model, :type, :color, :mags, :power, :sites, :purchased) ");
+            $result = $addQuery->execute([
+                'make' => $valSanArr['make'],
+                'model' => $valSanArr['model'],
+                'type' => $valSanArr['type'],
+                'color' => $valSanArr['color'],
+                'mags' => $valSanArr['mags'],
+                'power' => $valSanArr['power'],
+                'sites' => $valSanArr['sites'],
+                'purchased' => $valSanArr['purchased']
+            ]);
+                return $message = 'Entry Added successfully';
+    }
 ?>
