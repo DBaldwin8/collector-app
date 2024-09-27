@@ -11,7 +11,7 @@ function returnDb()
     return $db;
 }
 
-function populateTable (array $table) {
+function populateTable(array $table) {
     $row = '';
     foreach ($table as $value) {
         $row .= "<tr>".
