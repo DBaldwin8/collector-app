@@ -3,6 +3,13 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
+if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'])) && (isset($_POST['color'])) && (isset($_POST['mags'])) && (isset($_POST['power'])) && (isset($_POST['sites'])) && (isset($_POST['purchased'])) ) {
+    validateSanitizeEntry($_POST, $validatedSanitizedArr, $message);
+    if ($message === '') {
+        addToDatabase($validatedSanitizedArr, $db, $message);
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -71,19 +78,20 @@ $db = returnDb();
                                 <input class="shrink" type="text" name="type" id="type">
                             </td>
                             <td class="input">
+                                <!-- change to dropdown -->
                                 <input class="shrink" type="text" name="color" id="color">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="mags" id="mags">
+                                <input class="shrink" type="number" name="mags" id="mags">
                             </td>
                             <td class="input">
                                 <input class="shrink" type="text" name="power" id="power">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="sites" id="sites">
+                                <input class="shrink" type="number" name="sites" id="sites">
                             </td>
                             <td class="input">
-                                <input class="shrink" type="text" name="purchased" id="purchased">
+                                <input class="shrink" type="date" name="purchased" id="purchased">
                             </td>
                         </tr>
                         <tr class="">
@@ -93,6 +101,11 @@ $db = returnDb();
                         </tr>
                     </form>
                 </table>
+                <div>
+                    <?php
+                        echo $message;
+                    ?>
+                </div>
             </div>
         </div>
     </body>
