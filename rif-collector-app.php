@@ -109,7 +109,7 @@ function addToDatabase(array $valSanArr, object $db, string &$message) {
         ]);
 
         if (!$result) {
-            return $message = "there has been an error in adding to database";
+            return $message = "There has been an error in adding to database";
         } else {
             return $message = 'Entry Added successfully';
         }
