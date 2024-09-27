@@ -58,8 +58,8 @@ function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$mes
         return $message = "Error with your 'Type' input";
     }
         // Need to strip white space or make it a dropdown in HTML.
-    $color = htmlspecialchars($entryToAdd['color']);
-    $color = strtolower($color);
+    $color = strtolower(htmlspecialchars($entryToAdd['color']));
+    
     if ($color === 'white') {
         $color = 3;
     } elseif ($entryToAdd['color'] === 'black') {
