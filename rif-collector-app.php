@@ -63,10 +63,12 @@ function addToDatabase(array $entryToAdd, object $db, string &$message) {
 
         //////////// Set color id entry
 
-        $color = filter_var($entryToAdd['color'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $color = strip_tags($entryToAdd['color']);
         $color = strtolower($color);
 
-        if ($color === 'white') {
+        if ($color === ''){
+            return $message = "Error with your 'Color' input";
+        } elseif ($color === 'white') {
             $color = 3;
         } elseif ($entryToAdd['color'] === 'black') {
             $color = 2;
