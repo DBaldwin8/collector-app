@@ -38,6 +38,7 @@ function retrieveAllQuery($db) {
 $message = "";
 $validatedSanitizedArr = [];
 
+//  no need to pass in the array as it's global from $_POST
 function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$message) {
 
     $dateRegex = '~^\d{4}-\d{2}-\d{2}$~';

@@ -79,4 +79,24 @@ class rifCollectorAppTest extends TestCase {
         $this->expectException(TypeError::class);
         populateTable($input);
     }
+
+
+    /*
+
+    public function testPopulateTableMalformed(): void {
+        $input = [
+            ['make' => 'MAKE',
+            'model' => 'MODEL',
+            'type' => 'TYPE',
+            'color' => 'COLOR',
+            'mags_owned' => 2,
+            'power_source' => 'POWER SOURCE',
+            'sites_visited' => 1,
+            'purchase_date' => '2024-01-01']
+        ];
+
+        $this->expectException(TypeError::class);
+    }
+
+     */
 }
