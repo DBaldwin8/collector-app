@@ -115,12 +115,9 @@ function addToDatabase(array $entryToAdd, object $db, string &$message) {
                 'sites' => $sites,
                 'purchased' => $purchased,
             ]);
-
             return $message = 'Entry Added successfully';
         }
-        return $message;
     }
-    return $message;
 }
 
 ?>
