@@ -34,6 +34,7 @@ function retrieveAllQuery($db) {
     return $query->fetchAll();
 }
 
+    // Need to be moved to be within their functions, and not passed by reference.
 $message = "";
 $validatedSanitizedArr = [];
 
@@ -41,24 +42,43 @@ function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$mes
 
     $dateRegex = '~^\d{4}-\d{2}-\d{2}$~';
 
-    if (!is_string($entryToAdd['make'])) {
+    $make = htmlspecialchars($entryToAdd['make']);
+    if (!$make) { // if make == ''
         return $message = "Error with your 'Make' input";
     }
-    if (!is_string($entryToAdd['model'])) {
+
+    $model = htmlspecialchars($entryToAdd['model']);
+    if (!$model) {
         return $message = "Error with your 'Model' input";
     }
-    if (!is_string($entryToAdd['type'])) {
+
+    $type = htmlspecialchars($entryToAdd['type']);
+    if ($type) {
         return $message = "Error with your 'Type' input";
     }
-    if (!is_string($entryToAdd['color'])) {
-        return $message = "Error with your 'Color' input";
+        // Need to strip white space or make it a dropdown in HTML.
+    $color = htmlspecialchars($entryToAdd['color']);
+    $color = strtolower($color);
+    if ($color === 'white') {
+        $color = 3;
+    } elseif ($entryToAdd['color'] === 'black') {
+        $color = 2;
+    } elseif ($entryToAdd['color'] === 'tan') {
+        $color = 1;
+    } else {
+        return $message = "only Black, White or Tan is an option";
     }
-    if (!filter_var($entryToAdd['mags'], FILTER_VALIDATE_INT)) {
+
+    $mags = htmlspecialchars($entryToAdd['mags']);
+    if (!$mags) {
         return $message = "Error with your 'Mags' input";
     }
-    if (!is_string($entryToAdd['power'])) {
+
+    $power = htmlspecialchars($entryToAdd['power']);
+    if (!$power) {
         return $message = "Error with your 'Power' input";
     }
+
     if (!filter_var($entryToAdd['sites'], FILTER_VALIDATE_INT)) {
         return $message = "Error with your 'Sites Visited' input";
     }
@@ -66,26 +86,14 @@ function validateSanitizeEntry(array $entryToAdd, &$validatedSanitizedArr, &$mes
         return $message = "Error with your 'Purchased Date' input";
     } else {
 
-        $color = strip_tags($entryToAdd['color']);
-        $color = strtolower($color);
-
-        if ($color === 'white') {
-            $color = 3;
-        } elseif ($entryToAdd['color'] === 'black') {
-            $color = 2;
-        } elseif ($entryToAdd['color'] === 'tan') {
-            $color = 1;
-        } else {
-            return $message = "Error with your 'Color' input";
-        }
-
+        // Last 2 not updated, need work.
     return $validatedSanitizedArr = [
-        'make' => htmlspecialchars($entryToAdd['make']),
-        'model' => htmlspecialchars($entryToAdd['model']),
-        'type' => htmlspecialchars($entryToAdd['type']),
+        'make' => $make,
+        'model' => $model,
+        'type' => $type,
         'color' => $color,
-        'mags' => filter_var($entryToAdd['mags'], FILTER_SANITIZE_NUMBER_INT),
-        'power' => htmlspecialchars($entryToAdd['power']),
+        'mags' => $mags,
+        'power' => $power,
         'sites' => filter_var($entryToAdd['sites'], FILTER_SANITIZE_NUMBER_INT),
         'purchased' => ($entryToAdd['purchased']),
         ];
@@ -110,15 +118,6 @@ function addToDatabase(array $valSanArr, object $db, string &$message) {
         return $message = "There has been an error in adding to database";
     } else {
         return $message = 'Entry Added successfully';
-    }
-}
-
-function hasFormBeenSubmitted(array $array, $validatedSanitizedArr, $db, &$message) {
-    if ( (isset($array['make'])) && (isset($array['model'])) && (isset($array['type'])) && (isset($array['color'])) && (isset($array['mags'])) && (isset($array['power'])) && (isset($array['sites'])) && (isset($array['purchased'])) ) {
-        validateSanitizeEntry($array, $validatedSanitizedArr, $message);
-        if ($message === '') {
-            addToDatabase($validatedSanitizedArr, $db, $message);
-        }
     }
 }
 

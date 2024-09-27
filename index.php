@@ -3,7 +3,12 @@
 require_once 'rif-collector-app.php';
 $db = returnDb();
 
-hasFormBeenSubmitted($_POST, $validatedSanitizedArr, $db,$message);
+if ( (isset($_POST['make'])) && (isset($_POST['model'])) && (isset($_POST['type'])) && (isset($_POST['color'])) && (isset($_POST['mags'])) && (isset($_POST['power'])) && (isset($_POST['sites'])) && (isset($_POST['purchased'])) ) {
+    validateSanitizeEntry($_POST, $validatedSanitizedArr, $message);
+    if ($message === '') {
+        addToDatabase($validatedSanitizedArr, $db, $message);
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -73,6 +78,7 @@ hasFormBeenSubmitted($_POST, $validatedSanitizedArr, $db,$message);
                                 <input class="shrink" type="text" name="type" id="type">
                             </td>
                             <td class="input">
+                                <!-- change to dropdown -->
                                 <input class="shrink" type="text" name="color" id="color">
                             </td>
                             <td class="input">

@@ -37,6 +37,7 @@ class rifCollectorAppTest extends TestCase {
         $this->assertEquals($expected, $actual);
     }
 
+            // This is a failure test not a malformed test.
     public function testPopulateTableMalformed(): void
     {
         $input = 4;
